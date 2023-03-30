@@ -1,10 +1,10 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { pathTo } from 'components/common/pathes';
-import {
-  getTrendingMovies,
-  getMovieDetails,
-  getMovieCredits,
-} from 'components/common/API';
+// import {
+//   getTrendingMovies,
+//   getMovieDetails,
+//   getMovieCredits,
+// } from 'components/common/API';
 
 export const Header = () => {
   // getTrendingMovies();

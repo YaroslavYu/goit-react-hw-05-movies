@@ -33,6 +33,7 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   //   const { title, overview, vote_average, genres, poster_path } = movie;
+  console.log(error, isLoadind);
 
   return (
     <>
