@@ -1,11 +1,15 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
 
-import { pathTo } from './common/pathes';
+import { pathTo } from '../common/pathes';
 
 import { Header } from './Header/Header';
-import { Home } from 'pages/Home/Home';
-import { Movies } from 'pages/Movies/Movies';
-import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
+
+const Home = lazy(() => import('pages/Home/Home'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
@@ -14,32 +18,13 @@ export const App = () => {
         <Route path={pathTo.HOME} element={<Header />}>
           <Route index element={<Home />} />
           <Route path={pathTo.MOVIES} element={<Movies />} />
-
           <Route path={pathTo.MOVIE_ID} element={<MovieDetails />}>
-            <Route
-              path={pathTo.MOVIE_ID_CAST}
-              element={<div>movie id cast</div>}
-            />
-            <Route
-              path={pathTo.MOVIE_ID_REVIEWS}
-              element={<div>movie id rewievs</div>}
-            />
+            <Route path={pathTo.MOVIE_ID_CAST} element={<Cast />} />
+            <Route path={pathTo.MOVIE_ID_REVIEWS} element={<Reviews />} />
           </Route>
-          <Route path="*" element={<div>not found</div>} />
+          <Route path="*" element={<Navigate to={pathTo.HOME} />} />
         </Route>
       </Routes>
     </div>
   );
 };
-
-// https://api.themoviedb.org/3/movie/550?api_key=e7dc56c25ee332beb552e37e9144086f
-// e7dc56c25ee332beb552e37e9144086f
-
-// style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}

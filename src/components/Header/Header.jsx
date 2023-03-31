@@ -1,26 +1,23 @@
-import { Outlet, NavLink } from 'react-router-dom';
-import { pathTo } from 'components/common/pathes';
-// import {
-//   getTrendingMovies,
-//   getMovieDetails,
-//   getMovieCredits,
-// } from 'components/common/API';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+
+import { pathTo } from 'common/pathes';
+import { StyledHeader, StyledNavLink, StyledSection } from './Header.styled';
 
 export const Header = () => {
-  // getTrendingMovies();
-  // getMovieDetails(76);
-  // getMovieCredits(76);
   return (
     <>
-      <header>
+      <StyledHeader>
         <nav>
-          <NavLink to={pathTo.HOME}>home</NavLink>
-          <NavLink to={pathTo.MOVIES}>movies</NavLink>
+          <StyledNavLink to={pathTo.HOME}>HOME</StyledNavLink>
+          <StyledNavLink to={pathTo.MOVIES}>MOVIES</StyledNavLink>
         </nav>
-      </header>
-      <section>
-        <Outlet />
-      </section>
+      </StyledHeader>
+      <StyledSection>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </StyledSection>
     </>
   );
 };
